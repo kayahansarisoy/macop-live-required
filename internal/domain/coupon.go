@@ -12,3 +12,8 @@ type Coupon struct {
 func (c Coupon) StorageKey() string {
 	return infrastructure.Key(c.OrderID) + "/coupon"
 }
+
+// Valid reports whether the coupon can be applied.
+func (c Coupon) Valid() bool {
+	return c.Percent > 0 && c.Percent <= 100
+}
